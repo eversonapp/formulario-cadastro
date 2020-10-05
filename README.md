@@ -1,2 +1,7 @@
 # Register form / Formulário de cadastro
-Just a simple register form with CNJP and Inscrição Estadual validator, an address autocomplete and a attachment option. 
+
+* Layout builded in HTML, CSS and the Bootstrap library
+* A JS validator for CNJP and Inscrição estadual 
+* An autocomplete mask for the adress section
+* PHPMailer used to send manage the content
+
