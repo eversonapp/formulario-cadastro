@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário cadastro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="main.js"></script>
+    <script src="jquery.mask.min.js"></script>
+    <style>
+        h1{font-size: 2em;}
+        h2{font-size: 1.6em;}
+        h3{font-size: 1.2em;}
+        h4{font-size: 1em;}
+
+        section{
+            background: #fff;
+            margin: 1vh 0;
+            padding: 2vh 2vw;
+        }
+
+        section:first-of-type{
+            border-radius: 4px 4px 0 0;
+            margin-top: 1vh;
+        }
+
+        section:last-of-type{
+            border-radius: 0 0 4px 4px;
+            margin-bottom: 1vh;
+        }
+
+        input, select{
+            margin: 1vh 0;
+            box-sizing: border-box;
+        }
+
+        .form-control{
+            border: 1px solid #fff;
+            border-bottom: 1px solid #333;
+            border-radius: 0;
+        }
+
+        .custom-file-input:lang(pt-BR), .custom-file-label::after {
+            content: "Buscar";
+        }
+    </style>
+</head>
+<body class="bg-dark text-dark">
+    <header  class="d-flex justify-content-center mt-3">
+        <span class="text-white navbar-brand"><h1>LOGO</h1></span>
+    </header>
+    <main class="container text-center">
+        <form id="formDados" name="formDados" action="enviar.php" method="POST" enctype="multipart/form-data">
+            <section class="container">
+                <h2 class="font-weight-bold">Página de Cadastro</h2>
+                <div class="form-row">
+                    <div class="col-12">
+                        <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" autofocus required>
+                    </div>
+                </div>
+            </section>
+            <section class="container">
+                <h2 class="font-weight-bold">Endereço</h2>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <input type="text" name="cep" id="cep" class="form-control" placeholder="CEP" required>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="input-custom form-control" name="uf" id="uf" required>
+                            <option value="" selected>Estado</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="cidade" id="cidade" class="form-control" placeholder="Cidade" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="bairro" id="bairro" class="form-control" placeholder="Bairro" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="rua" id="rua" class="form-control" placeholder="Rua" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="numero" id="numero" class="form-control" placeholder="Número" required>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="complemento" id="complemento" class="form-control" placeholder="Complemento">
+                    </div>
+                </div>
+            </section>
+            <section class="container">
+                <h2 class="font-weight-bold">Dados da empresa</h2>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <input type="text" name="razaoSocial" id="razaoSocial" class="form-control" placeholder="Razão Social" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="nomeFantasia" id="nomeFantasia" class="form-control" placeholder="Nome Fantasia" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="inscricaoEstadual" id="inscricaoEstadual" class="form-control" placeholder="Inscrição Estadual" onblur="if(!checkIE(this.value)){this.value='';}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="cnpj" id="cnpj" class="form-control" placeholder="CNPJ" onblur="if(!validarCNPJ(this.value)){this.value='';}" required>
+                    </div>
+                </div>
+            </section>
+            <section class="container">
+                <h2 class="font-weight-bold">Dados para contato</h2>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <input type="email" name="emailComercial" id="emailComercial" class="form-control" placeholder="E-mail Comercial" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" name="emailCobranca" id="emailCobranca" class="form-control" placeholder="E-mail Cobrança" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" name="emailNotaFiscal" id="emailNotaFiscal" class="form-control" placeholder="E-mail Nota Fiscal" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="telefone" id="telefone" class="form-control" placeholder="Telefone: (00) 0000-00000" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="celular" id="celular" class="form-control" placeholder="Celular: (00) 0000-00000" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="whatsApp" id="whatsApp" class="form-control" placeholder="Whatsapp: (00) 0000-00000" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="responsavelCompras" id="responsavelCompras" class="form-control" placeholder="Nome do(a) responsável por compras" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="responsavelEmpresa" id="responsavelEmpresa" class="form-control" placeholder="Nome do(a) responsável pela empresa" required>
+                    </div>
+                </div>
+            </section>
+            <section class="container">
+                <h2 class="font-weight-bold">Regime de Tributação</h2>
+                <div class="form-row d-flex justify-content-center">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="regimeTributacao1" name="regimeTributacao" class="custom-control-input" value="Contribuinte" required>
+                        <label class="custom-control-label" for="regimeTributacao1">Contribuinte</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="regimeTributacao2" name="regimeTributacao" class="custom-control-input" value="Simples">
+                        <label class="custom-control-label" for="regimeTributacao2">Simples</label>
+                    </div>
+                </div>
+            </section>
+            <section class="container">
+                <h2 class="font-weight-bold">Referências comerciais</h2>
+                <div id="referencia-container" class="form-row">
+                    <div id="referenciaAdd" class="col-12">
+                        <input type="text" name="referenciasComerciais[]" id="referenciasComerciais" class="form-control" placeholder="Nome da empresa e Telefone" >
+                    </div>
+                </div>
+                <span id="referenciaBtn" class="btn btn-danger mr-1">Adicionar mais referências</span>
+            </section>
+            
+            <section class="container">
+               <h2 class="font-weight-bold">Somente para clientes de fora do estado de São Paulo</h2>
+               <h3>Possui algum regime especial de recolhimento de substituição tributária?</h3>
+               <h4 class="text-danger">Caso a opção seja "SIM" você devera encaminhar a empresa o documento comprovatório.</h4>
+               <div class="form-row d-flex justify-content-center pt-3 pb-3">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" value="Sim. Arquivo em anexo." required>
+                        <label class="custom-control-label" for="customRadioInline1">Sim</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" value="Não">
+                        <label class="custom-control-label" for="customRadioInline2">Não</label>
+                    </div>
+                    <div id="anexo" class="input-group mt-3">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="arquivo" name="arquivo" accept="application/pdf" data-max-size="5000000" required disabled>
+                            <label class="custom-file-label text-left overflow-hidden" for="arquivo">PDF com até 5MB</label>
+                        </div>
+                    </div>
+                </div>
+            </section>        
+            <button id="submit" class="btn btn-lg btn-primary btn-block mt-3 mb-3 text-uppercase">Enviar formulário</button>
+        </form>
+        
+    </main>
+    <footer class="text-white text-center mt-3 mb-3">
+        <div class="container">
+            <div><a href="http://www.everson.app" class="text-white">&copy; everson.app</a></div>
+        </div>
+
+        <script>
+            $('#submit').click(function(){
+                if($('#nome').val() == ''){alert('Você esqueceu de preencher o campo NOME'); return false}
+                if($('#razaoSocial').val() == ''){alert('Você esqueceu de preencher o campo RAZÃO SOCIAL'); return false}
+                if($('#nomeFantasia').val() == ''){alert('Você esqueceu de preencher o campo NOME FANTASIA'); return false}
+                if($('#inscricaoEstadual').val() == ''){alert('INSCRIÇÃO ESTADUAL inválida. Verifique se a INSCRIÇÃO ESTADUAL corresponde ao ESTADO informado'); return false}
+                if($('#cnpj').val() == ''){alert('CNPJ inválido'); return false}
+                if($('#cep').val() == ''){alert('Você esqueceu de preencher o campo CEP'); return false}
+                if($('#rua').val() == ''){alert('Você esqueceu de preencher o campo RUA'); return false}
+                if($('#numero').val() == ''){alert('Você esqueceu de preencher o campo NÚMERO'); return false}
+                if($('#bairro').val() == ''){alert('Você esqueceu de preencher o campo BAIRRO'); return false}
+                if($('#cidade').val() == ''){alert('Você esqueceu de preencher o campo CIDADE'); return false}
+                if($('#uf').val() == ''){alert('Você esqueceu de preencher o campo UF'); return false}
+                if($('#emailComercial').val() == ''){alert('Você esqueceu de preencher o campo E-MAIL COMERCIAL'); return false}
+                if($('#emailCobranca').val() == ''){alert('Você esqueceu de preencher o campo E-MAIL COBRANÇA'); return false}
+                if($('#emailNotaFiscal').val() == ''){alert('Você esqueceu de preencher o campo E-MAIL NOTA FISCAL'); return false}
+                if($('#telefone').val() == ''){alert('Você esqueceu de preencher o campo TELEFONE'); return false}
+                if($('#celular').val() == ''){alert('Você esqueceu de preencher o campo CELULAR'); return false}
+                if($('#whatsApp').val() == ''){alert('Você esqueceu de preencher o campo WHATSAPP'); return false}
+                if($('#responsavelCompras').val() == ''){alert('Você esqueceu de preencher o campo RESPOSÁVEL POR COMPRAS'); return false}
+                if($('#responsavelEmpresa').val() == ''){alert('Você esqueceu de preencher o campo RESPONSÁVEL PELA EMPRESA'); return false}
+                if($('#referenciasComerciais').val() == ''){alert('Digite ao menos uma REFERÊNCIA COMERCIAL'); return false}
+            });
+
+            //Anexo
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+
+            $(document).ready(function(){
+                $('#customRadioInline1').click(function(){
+                $('#anexo').show();
+                $("#arquivo").attr("required", "req").prop('disabled', false);
+                });
+            });
+
+            $(document).ready(function(){
+                $('#customRadioInline2').click(function(){
+                $('#anexo').hide();
+                $("#arquivo").removeAttr('required').prop('disabled', true);
+                });
+            });
+            $(function(){
+                var fileInput = $('#arquivo');
+                var maxSize = fileInput.data('max-size');
+                var anexoYes = $('#customRadioInline1');
+                $('#formDados').submit(function(e){
+                    if(fileInput.get(0).files.length){
+                        var fileSize = fileInput.get(0).files[0].size;
+                        if(fileSize>maxSize){
+                            alert('O tamanho do arquivo enviado não pode ter mais de 5MB.');
+                            return false;
+                        }
+                    }
+                    if(fileInput.val().slice(-3).toLowerCase()) {
+                        if(fileInput.val().slice(-3).toLowerCase() !== "pdf"){
+                            alert('O arquivo enviado precisa estar no formato PDF');
+                            return false;
+                        }
+                    }
+                });
+            });
+       </script>
+    </footer>
+</body>
+</html>
