@@ -314,7 +314,7 @@ function checkIE(ie)
            for (var i=0; i<=8; i++)
                nro[i] = parseInt(die.charAt(i));
            var NumMod = 0;
-           if (String(nro[0]).match(/[0123458]/))
+           if (String(nro[1]).match(/[0123458]/))
            {
               NumMod = 10;
 		   }
