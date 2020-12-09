@@ -3,7 +3,7 @@
 ![](preview.png)
 
 * Layout builded in HTML, CSS and the Bootstrap library
-* A JS validator for CNJP and Inscrição estadual 
+* A JS validator for CNJP 
 * An autocomplete mask for the adress section
 * PHPMailer used to manage the content
 
